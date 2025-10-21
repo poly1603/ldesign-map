@@ -1,19 +1,16 @@
-node_modules
+﻿node_modules
 dist
+build
 .DS_Store
 *.log
-*.local
-.vite
-.idea
+.env
+.env.local
+coverage
 .vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Build files
-*.tsbuildinfo
-
-# Example build
-example/dist
+.idea
+*.swp
+*.swo
+*~
+.cache
+.temp
+.tmp
