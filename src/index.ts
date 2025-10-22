@@ -35,6 +35,128 @@ export { LayerManager } from './LayerManager';
 export { GeometryUtils } from './GeometryUtils';
 export { DataTransformer } from './DataTransformer';
 
+// v2.4 动画批处理
+export {
+  AnimationBatcher,
+  globalAnimationBatcher,
+  animate as animateBatch,
+  stopAnimation,
+  pauseAnimation,
+  resumeAnimation,
+  type AnimationConfig,
+  type AnimationEasing
+} from './animation/AnimationBatcher';
+
+// v2.5 空间索引
+export {
+  Quadtree,
+  GeoQuadtree,
+  type Point,
+  type Bounds
+} from './spatial/Quadtree';
+
+export {
+  SpatialIndex,
+  createGeoIndex,
+  createPlanarIndex,
+  type SpatialIndexOptions
+} from './spatial/SpatialIndex';
+
+// v2.6 编辑器功能
+export {
+  DrawingManager,
+  createDrawingManager,
+  type DrawingMode,
+  type DrawingOptions,
+  type DrawingFeature,
+  type DrawingEventType
+} from './editor/DrawingManager';
+
+export {
+  GeometryEditor,
+  type EditMode,
+  type EditOptions
+} from './editor/GeometryEditor';
+
+// v2.7 插件系统
+export {
+  PluginSystem,
+  createPluginSystem,
+  type Plugin,
+  type PluginMetadata,
+  type PluginContext,
+  type PluginLifecycleHook
+} from './plugin/PluginSystem';
+
+export {
+  BasePlugin
+} from './plugin/BasePlugin';
+
+export {
+  HeatmapPlugin,
+  createHeatmapPlugin
+} from './plugin/HeatmapPlugin';
+
+// v2.8 资源管理
+export {
+  ResourcePool,
+  LayerPool,
+  globalLayerPool,
+  type PoolOptions
+} from './resource/ResourcePool';
+
+export {
+  LazyLoader,
+  globalLazyLoader,
+  type LazyLoadOptions,
+  type LayerItem
+} from './resource/LazyLoader';
+
+// v2.9 批量渲染
+export {
+  BatchRenderer,
+  globalBatchRenderer,
+  type BatchOptions,
+  type BatchGroup
+} from './renderer/BatchRenderer';
+
+// v3.0 严格类型系统
+export {
+  type Coordinate,
+  type Coordinate3D,
+  type RGBAColor,
+  type RGBColor,
+  type ColorValue,
+  type NumericValue,
+  type StringValue,
+  type DeckGLLayerType,
+  type LayerConstructor,
+  type MapEventData,
+  type ClickInfo,
+  type HoverInfo,
+  type EventCallback,
+  type ClickCallback,
+  type HoverCallback,
+  type ProgressCallback,
+  type ErrorCallback,
+  type AsyncResult,
+  type MaybeAsync,
+  type DeepReadonly,
+  type DeepPartial,
+  isCoordinate,
+  isRGBAColor,
+  isPromise,
+  assertNotNull,
+  assertType,
+  validateCoordinateRange,
+  validateColor,
+  normalizeColor,
+  safeConvert,
+  toArray,
+  clamp,
+  toInteger
+} from './types/strict';
+
 // v2.3 新增功能
 export { TrackPlayer, createTrackPlayer, createTrackFromGPS } from './TrackPlayer';
 export { GeoFence, createGeoFence, createFenceFromGeoJSON } from './GeoFence';

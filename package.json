@@ -1,7 +1,7 @@
 {
   "name": "@ldesign/map-renderer",
-  "version": "2.0.0",
-  "description": "A powerful deck.gl-based map renderer with GeoJSON support, featuring heatmaps, clustering, measurement tools, and more",
+  "version": "3.0.0",
+  "description": "A high-performance deck.gl-based map renderer with WebWorker, spatial indexing, animation batching, plugin system, and comprehensive testing",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,12 @@
     "type-check": "tsc --noEmit",
     "example": "cd example && npm run dev",
     "clean": "node -e \"const fs=require('fs');const path=require('path');const dir='dist';if(fs.existsSync(dir)){fs.rmSync(dir,{recursive:true,force:true});}\"",
-    "prebuild": "npm run type-check"
+    "prebuild": "npm run type-check",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest watch"
   },
   "keywords": [
     "deck.gl",
@@ -50,10 +55,15 @@
     "@rollup/plugin-node-resolve": "^15.2.0",
     "@rollup/plugin-typescript": "^11.1.0",
     "@types/node": "^20.0.0",
+    "@vitest/ui": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "happy-dom": "^12.10.0",
+    "jsdom": "^23.0.0",
     "rollup": "^4.0.0",
     "rollup-plugin-dts": "^6.0.0",
     "tslib": "^2.6.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
   },
   "repository": {
     "type": "git",
