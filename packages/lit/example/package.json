@@ -1,0 +1,23 @@
+{
+  "name": "@ldesign-map/lit-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5004",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lit": "^3.0.0",
+    "@deck.gl/core": "^9.0.0",
+    "@deck.gl/layers": "^9.0.0",
+    "@deck.gl/geo-layers": "^9.0.0",
+    "@deck.gl/aggregation-layers": "^9.0.0",
+    "@luma.gl/constants": "^9.0.0",
+    "@luma.gl/core": "^9.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

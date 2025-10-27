@@ -1,0 +1,47 @@
+{
+  "name": "@ldesign-map/vanilla",
+  "version": "3.0.0",
+  "description": "Vanilla JavaScript adapter for ldesign-map",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "unpkg": "./dist/index.min.js",
+  "jsdelivr": "./dist/index.min.js",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "ldesign-builder build --watch",
+    "build": "ldesign-builder build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "clean": "rimraf dist es lib",
+    "example": "pnpm --filter @ldesign-map/vanilla-example dev"
+  },
+  "dependencies": {
+    "@ldesign-map/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "link:../../../../tools/builder",
+    "@types/node": "^20.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

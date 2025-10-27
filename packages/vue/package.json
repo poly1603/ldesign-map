@@ -1,0 +1,52 @@
+{
+  "name": "@ldesign-map/vue",
+  "version": "3.0.0",
+  "description": "Vue 3 components for ldesign-map",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "ldesign-builder build --watch",
+    "build": "ldesign-builder build",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest",
+    "clean": "rimraf dist es lib",
+    "example": "pnpm --filter @ldesign-map/vue-example dev"
+  },
+  "dependencies": {
+    "@ldesign-map/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "link:../../../../tools/builder",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vue/compiler-sfc": "^3.3.0",
+    "@vue/test-utils": "^2.4.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "vue": "^3.3.0",
+    "vue-tsc": "^1.8.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}
+
+
+

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ldesign-map/core - 核心功能演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: calc(100vh - 140px);
+        }
+
+        .controls h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .control-group button {
+            width: 100%;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .control-group button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .control-group button:active {
+            transform: translateY(0);
+        }
+
+        .map-wrapper {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #map {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f0f2f5;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .info-panel {
+            background: #f7f7f7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .info-panel h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .info-panel p {
+            margin: 5px 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .status.success {
+            background: #4CAF50;
+        }
+
+        .status.error {
+            background: #f44336;
+        }
+
+        .layer-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .layer-item {
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-item button {
+            padding: 5px 12px !important;
+            background: #ff6b6b !important;
+            font-size: 12px !important;
+            margin: 0 !important;
+            width: auto !important;
+        }
+
+        .empty {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🗺️ @ldesign-map/core - 核心功能演示</h1>
+        <p>高性能地图渲染引擎核心包 - 基于 deck.gl 构建</p>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <h2>🎮 功能演示</h2>
+
+            <div class="control-group">
+                <label>图层管理</label>
+                <button onclick="addScatterplotLayer()">添加散点图层</button>
+                <button onclick="addPathLayer()">添加路径图层</button>
+                <button onclick="addPolygonLayer()">添加多边形图层</button>
+                <button onclick="addHexagonLayer()">添加六边形图层</button>
+                <button onclick="clearAllLayers()">清除所有图层</button>
+            </div>
+
+            <div class="control-group">
+                <label>视图控制</label>
+                <button onclick="flyToBeijing()">飞行到北京</button>
+                <button onclick="flyToShanghai()">飞行到上海</button>
+                <button onclick="resetView()">重置视图</button>
+                <button onclick="rotateView()">旋转视图</button>
+            </div>
+
+            <div class="control-group">
+                <label>动画效果</label>
+                <button onclick="startAnimation()">启动动画</button>
+                <button onclick="stopAnimation()">停止动画</button>
+                <button onclick="pulseAnimation()">脉冲动画</button>
+            </div>
+
+            <div class="control-group">
+                <label>性能测试</label>
+                <button onclick="add1000Points()">添加1000个点</button>
+                <button onclick="add10000Points()">添加10000个点</button>
+                <button onclick="showPerformance()">显示性能信息</button>
+            </div>
+
+            <div class="control-group">
+                <h3 style="font-size: 14px; margin-bottom: 10px;">图层列表</h3>
+                <div class="layer-list" id="layerList">
+                    <div class="empty">暂无图层</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-wrapper">
+            <div id="map"></div>
+            <div class="info-panel">
+                <h3>📊 信息面板 <span id="status" class="status">未初始化</span></h3>
+                <p>鼠标位置: <strong id="mousePos">-</strong></p>
+                <p>缩放级别: <strong id="zoomLevel">-</strong></p>
+                <p>图层数量: <strong id="layerCount">0</strong></p>
+                <p>最后操作: <strong id="lastAction">-</strong></p>
+                <p>FPS: <strong id="fps">-</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
